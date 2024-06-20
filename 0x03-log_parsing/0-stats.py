@@ -42,9 +42,9 @@ def update_values(line_info):
     '''Updates the values of the global variables'''
     global fileSize, statusCodes
 
-    if line_info['status_code'] in statusCodes:
+    fileSize += line_info['file_size']
+    if line_info['status_code'] in statusCodes.keys():
         statusCodes[line_info['status_code']] += 1
-        fileSize += line_info['file_size']
 
 
 def print_stats():
