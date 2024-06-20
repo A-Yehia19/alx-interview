@@ -9,14 +9,15 @@ fileSize = 0
 statusCodes = {'200': 0, '301': 0, '400': 0, '401': 0, '403': 0, '404': 0, '405': 0, '500': 0}
 
 def parse_input(line):
+    '''Parses the input line'''
     parsers = [
         '(?P<ip>[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)',
-        '(?P<date>[0-9]+)',
-        '(?P<request>[0-9]+)',
-        '(?P<status_code>[a-zA-Z0-9_ ./]+)',
+        '(?P<date>.*)',
+        '(?P<request>.*)',
+        '(?P<status_code>[0-9]+)',
         '(?P<file_size>[0-9]+)'
     ]
-    log_fmt = '^{} \\- [{}] \\"{}\\" {} {}$'.format(parsers[0], parsers[1], parsers[2], parsers[3], parsers[4])
+    log_fmt = '^{} \\- \\[{}\\] \\"{}\\" {} {}$'.format(parsers[0], parsers[1], parsers[2], parsers[3], parsers[4])
     match = re.fullmatch(log_fmt, line)
 
     result = {}
@@ -26,7 +27,12 @@ def parse_input(line):
     return result
 
 def update_values(line_info):
-    print(line_info)
+    '''Updates the values of the global variables'''
+    global fileSize, statusCodes
+
+    fileSize += line_info['file_size']
+    if line_info['status_code'] in statusCodes:
+        statusCodes[line_info['status_code']] += 1
 
 def print_stats():
     '''Prints the statistics of the log.'''
