@@ -9,6 +9,8 @@ def canUnlockAll(boxes):
 
     while len(keys) > 0:
         key = keys.pop()
+        if key < 0 or key >= len(boxes):
+            continue
 
         if key not in unlocked:
             unlocked.add(key)
