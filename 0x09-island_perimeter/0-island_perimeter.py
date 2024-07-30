@@ -4,10 +4,10 @@
 
 def expand_island(grid, row, col):
     """expand the island"""
-    up = grid[row - 1][col]
-    down = grid[row + 1][col]
-    left = grid[row][col - 1]
-    right = grid[row][col + 1]
+    up = 0 if row - 1 < 0 else grid[row - 1][col]
+    down = 0 if row + 1 < len(grid) else grid[row + 1][col]
+    left = 0 if col - 1 < 0 else grid[row][col - 1]
+    right = 0 if col + 1 < len(grid[0]) else grid[row][col + 1]
 
     grid[row][col] = -1
     count = [up, down, left, right].count(0)
