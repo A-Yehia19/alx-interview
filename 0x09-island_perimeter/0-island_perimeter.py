@@ -2,7 +2,7 @@
 """Island Perimeter"""
 
 
-def expand_island(grid: list[list[int]], row: int, col: int) -> int:
+def expand_island(grid, row, col):
     """expand the island"""
     up = grid[row - 1][col]
     down = grid[row + 1][col]
@@ -24,7 +24,7 @@ def expand_island(grid: list[list[int]], row: int, col: int) -> int:
     return count
 
 
-def island_perimeter(grid: list[list[int]]) -> int:
+def island_perimeter(grid):
     """find the perimeter of island"""
     perimeter = 0
     for row in range(len(grid)):
