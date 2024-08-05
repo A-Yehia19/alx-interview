@@ -23,6 +23,7 @@ def isWinner(x, nums):
         primes_count = len(list(filter(lambda x: x, primes[0: n])))
         bens_wins += primes_count % 2 == 0
         marias_wins += primes_count % 2 == 1
+
     if marias_wins == bens_wins:
         return None
     return 'Maria' if marias_wins > bens_wins else 'Ben'
